@@ -26,6 +26,8 @@ export default function reducer(state = initialState, action) {
       feedback = "You're Cold...";
     } else if (difference >= 10) {
       feedback = "You're Warm.";
+    } else if (difference >= 5) {
+      feedback = "You're Very Warm.";
     } else if (difference >= 1) {
       feedback = "You're Hot!";
     } else {
@@ -36,11 +38,9 @@ export default function reducer(state = initialState, action) {
       feedback,
       guesses: [...state.guesses, guess]
     };
-  }
-  if (action.type === RESTART_GAME) {
+  } else if (action.type === RESTART_GAME) {
     return initialState;
-  }
-  if (action.type === GENERATE_AURAL_UPDATE) {
+  } else if (action.type === GENERATE_AURAL_UPDATE) {
     const { guesses, feedback } = state;
 
     // If there's not exactly 1 guess, we want to
